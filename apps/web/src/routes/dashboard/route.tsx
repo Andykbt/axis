@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, redirect } from "@tanstack/react-router";
-
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { NotFoundComponent } from "src/components/not-found";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Header } from "@/components/header";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { getUser } from "@/functions/get-user";
 import { orpc } from "@/utils/orpc";
 
@@ -17,6 +20,7 @@ export const Route = createFileRoute("/dashboard")({
 			});
 		}
 	},
+	notFoundComponent: NotFoundComponent,
 });
 
 function RouteComponent() {
@@ -25,10 +29,13 @@ function RouteComponent() {
 	const privateData = useQuery(orpc.privateData.queryOptions());
 
 	return (
-		<div>
-			<h1>Dashboard</h1>
-			<p>Welcome {session?.user.name}</p>
-			<p>API: {privateData.data?.message}</p>
-		</div>
+		<SidebarProvider>
+			<AppSidebar />
+
+			<SidebarInset>
+				<Header />
+				<Outlet />
+			</SidebarInset>
+		</SidebarProvider>
 	);
 }

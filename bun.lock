@@ -21,6 +21,7 @@
       "dependencies": {
         "@axis/api": "workspace:*",
         "@axis/auth": "workspace:*",
+        "@axis/db": "workspace:*",
         "@axis/env": "workspace:*",
         "@base-ui/react": "^1.0.0",
         "@orpc/client": "catalog:",
