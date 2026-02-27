@@ -119,7 +119,6 @@ export default function SignInForm({
 						<Button
 							type="submit"
 							className="w-full"
-							variant="outline"
 							disabled={!state.canSubmit || state.isSubmitting}
 						>
 							{state.isSubmitting ? "Submitting..." : "Sign In"}

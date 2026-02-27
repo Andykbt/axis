@@ -1,20 +1,39 @@
+import { cva, type VariantProps } from "class-variance-authority";
 import type * as React from "react";
-
 import { cn } from "@/lib/utils";
+
+const cardVariants = cva(
+	"group/card flex flex-col gap-2 overflow-hidden rounded-none py-4 text-card-foreground text-xs/relaxed has-[>img:first-child]:pt-0 has-data-[slot=card-footer]:pb-0 data-[size=sm]:gap-2 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-none *:[img:last-child]:rounded-none",
+	{
+		variants: {
+			variant: {
+				default: "bg-transparent",
+				border: "border border-border",
+			},
+			hover: {
+				true: "transition-colors hover:border-accent-red focus:border-accent-red",
+			},
+		},
+		defaultVariants: {
+			variant: "default",
+			hover: false,
+		},
+	},
+);
 
 function Card({
 	className,
+	variant = "default",
 	size = "default",
+	hover = false,
 	...props
-}: React.ComponentProps<"div"> & { size?: "default" | "sm" }) {
+}: React.ComponentProps<"div"> &
+	VariantProps<typeof cardVariants> & { size?: "default" | "sm" }) {
 	return (
 		<div
 			data-slot="card"
 			data-size={size}
-			className={cn(
-				"group/card flex flex-col gap-4 overflow-hidden rounded-none bg-card py-4 text-card-foreground text-xs/relaxed ring-1 ring-foreground/10 has-[>img:first-child]:pt-0 has-data-[slot=card-footer]:pb-0 data-[size=sm]:gap-2 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-none *:[img:last-child]:rounded-none",
-				className,
-			)}
+			className={cn(cardVariants({ variant, hover, className }), className)}
 			{...props}
 		/>
 	);
@@ -38,7 +57,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
 		<div
 			data-slot="card-title"
 			className={cn(
-				"font-medium text-sm group-data-[size=sm]/card:text-sm",
+				"font-medium text-muted-foreground text-sm group-data-[size=sm]/card:text-sm",
 				className,
 			)}
 			{...props}

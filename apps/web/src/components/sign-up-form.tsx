@@ -144,7 +144,6 @@ export default function SignUpForm({
 						<Button
 							type="submit"
 							className="w-full"
-							variant="outline"
 							disabled={!state.canSubmit || state.isSubmitting}
 						>
 							{state.isSubmitting ? "Submitting..." : "Sign Up"}
@@ -157,7 +156,7 @@ export default function SignUpForm({
 				<Button
 					variant="link"
 					onClick={onSwitchToSignIn}
-					className="text-indigo-600 hover:text-indigo-800"
+					className="text-primary hover:text-primary/80"
 				>
 					Already have an account? Sign In
 				</Button>
