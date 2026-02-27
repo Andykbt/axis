@@ -1,0 +1,24 @@
+{
+	"name": "@axis/auth",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		},
+		"./*": {
+			"default": "./src/*.ts"
+		}
+	},
+	"scripts": {},
+	"dependencies": {
+		"@axis/db": "workspace:*",
+		"@axis/env": "workspace:*",
+		"better-auth": "catalog:",
+		"dotenv": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@axis/config": "workspace:*",
+		"typescript": "catalog:"
+	}
+}
