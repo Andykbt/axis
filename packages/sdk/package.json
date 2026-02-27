@@ -1,0 +1,13 @@
+{
+	"name": "@axis/sdk",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "tsup src/sdk.ts --format iife --out-dir ../../apps/web/public --minify --no-splitting --watch",
+		"build": "tsup src/sdk.ts --format iife --out-dir ../../apps/web/public --minify --no-splitting && mv ../../apps/web/public/sdk.js ../../apps/web/public/sdk.js"
+	},
+	"devDependencies": {
+		"tsup": "^8.3.5",
+		"typescript": "catalog:"
+	}
+}

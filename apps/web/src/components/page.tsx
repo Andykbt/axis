@@ -10,7 +10,7 @@ function Page({
 	return (
 		<div
 			className={cn(
-				"mx-auto flex w-full max-w-2xl flex-col gap-4 py-8",
+				"mx-auto flex w-full max-w-4xl flex-col gap-4 py-8",
 				className,
 			)}
 		>

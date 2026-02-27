@@ -69,16 +69,17 @@ function RouteComponent() {
 							<SelectValue placeholder="Select a date" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value="today">Today</SelectItem>
-							<SelectItem value="yesterday">Yesterday</SelectItem>
-							<SelectItem value="last-7-days">Last 7 days</SelectItem>
-							<SelectItem value="last-30-days">Last 30 days</SelectItem>
-							<SelectItem value="last-90-days">Last 90 days</SelectItem>
+							<SelectItem value="Today">Today</SelectItem>
+							<SelectItem value="Yesterday">Yesterday</SelectItem>
+							<SelectItem value="Last 7 days">Last 7 days</SelectItem>
+							<SelectItem value="Last 30 days">Last 30 days</SelectItem>
+							<SelectItem value="Last 90 days">Last 90 days</SelectItem>
 						</SelectContent>
 					</Select>
 				</Flex>
 			</PageHeader>
-			<div className="grid grid-cols-3">
+
+			<div className="grid grid-cols-3 border">
 				<Card>
 					<CardHeader>
 						<CardTitle>VIEWS</CardTitle>
@@ -103,6 +104,7 @@ function RouteComponent() {
 					<CardContent>100</CardContent>
 				</Card>
 			</div>
+
 			<ProjectViewsChart />
 
 			<Card className="h-96 p-0" variant={"border"}>
