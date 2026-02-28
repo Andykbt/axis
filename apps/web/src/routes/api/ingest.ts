@@ -10,7 +10,7 @@ export const Route = createFileRoute("/api/ingest")({
 			POST: async ({ request }) => {
 				const data = await request.json();
 
-				const res = await ingest({ data });
+				const _res = await ingest({ data });
 
 				// return new Response(JSON.stringify(res), { status: 200 });
 				return new Response("OK", { status: 200 });

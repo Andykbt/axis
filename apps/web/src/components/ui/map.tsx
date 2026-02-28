@@ -262,7 +262,15 @@ const MapView = forwardRef<MapRef, MapProps>(function MapView(
 			setMapInstance(null);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [
+		clearStyleTimeout,
+		mapStyles.dark,
+		mapStyles.light,
+		projection,
+		props,
+		resolvedTheme,
+		viewport,
+	]);
 
 	// Sync controlled viewport to map
 	useEffect(() => {
@@ -439,7 +447,7 @@ function MapMarker({
 		return markerInstance;
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [draggable, latitude, longitude, markerOptions]);
 
 	useEffect(() => {
 		if (!map) return;
@@ -451,7 +459,7 @@ function MapMarker({
 		};
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [map, marker.addTo, marker.remove]);
 
 	if (
 		marker.getLngLat().lng !== longitude ||
@@ -543,7 +551,7 @@ function MarkerPopup({
 
 		return popupInstance;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [container, popupOptions]);
 
 	useEffect(() => {
 		if (!map) return;
@@ -555,7 +563,7 @@ function MarkerPopup({
 			marker.setPopup(null);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [map, container, marker.setPopup, popup]);
 
 	if (popup.isOpen()) {
 		const prev = prevPopupOptions.current;
@@ -622,7 +630,7 @@ function MarkerTooltip({
 
 		return tooltipInstance;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [popupOptions]);
 
 	useEffect(() => {
 		if (!map) return;
@@ -643,7 +651,15 @@ function MarkerTooltip({
 			tooltip.remove();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [
+		map,
+		container,
+		marker.getElement,
+		marker.getLngLat,
+		tooltip.remove,
+		tooltip.setDOMContent,
+		tooltip.setLngLat,
+	]);
 
 	if (tooltip.isOpen()) {
 		const prev = prevTooltipOptions.current;
@@ -955,7 +971,7 @@ function MapPopup({
 
 		return popupInstance;
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [latitude, longitude, popupOptions]);
 
 	useEffect(() => {
 		if (!map) return;
@@ -974,7 +990,16 @@ function MapPopup({
 			}
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map]);
+	}, [
+		map,
+		container,
+		popup.addTo,
+		popup.isOpen,
+		popup.off,
+		popup.on,
+		popup.remove,
+		popup.setDOMContent,
+	]);
 
 	if (popup.isOpen()) {
 		const prev = popupOptionsRef.current;
@@ -1099,7 +1124,7 @@ function MapRoute({
 			}
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isLoaded, map]);
+	}, [isLoaded, map, color, dashArray, layerId, opacity, sourceId, width]);
 
 	// When coordinates change, update the source data
 	useEffect(() => {
@@ -1304,7 +1329,20 @@ function MapClusterLayer<
 			}
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isLoaded, map, sourceId]);
+	}, [
+		isLoaded,
+		map,
+		sourceId,
+		clusterColors[0],
+		clusterCountLayerId,
+		clusterLayerId,
+		clusterMaxZoom,
+		clusterRadius,
+		clusterThresholds[0],
+		data,
+		pointColor,
+		unclusteredLayerId,
+	]);
 
 	// Update source data when data prop changes (only for non-URL data)
 	useEffect(() => {

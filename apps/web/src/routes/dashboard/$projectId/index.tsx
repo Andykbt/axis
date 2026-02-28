@@ -1,29 +1,11 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { ChartAreaIcon, CopyIcon, FileCodeIcon } from "lucide-react";
 import { ProjectViewsChart } from "@/components/charts/views-chart";
 import { Flex } from "@/components/flex";
 import { Grid } from "@/components/grid";
 import { NotFoundComponent } from "@/components/not-found";
 import { Page, PageHeader, PageTitle } from "@/components/page";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-	Empty,
-	EmptyContent,
-	EmptyHeader,
-	EmptyMedia,
-	EmptyTitle,
-} from "@/components/ui/empty";
-import { Field, FieldDescription } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupButton,
-	InputGroupInput,
-	InputGroupText,
-	InputGroupTextarea,
-} from "@/components/ui/input-group";
 import { MapControls, Map as ReactMap } from "@/components/ui/map";
 import {
 	Select,

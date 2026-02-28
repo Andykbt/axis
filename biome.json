@@ -25,7 +25,8 @@
 			"!**/.svelte-kit",
 			"!**/wrangler.jsonc",
 			"!**/.source",
-			"!**/convex/_generated"
+			"!**/convex/_generated",
+			"!**/public/*.global.js"
 		]
 	},
 	"formatter": {
@@ -60,6 +61,14 @@
 				"useNumberNamespace": "error",
 				"noInferrableTypes": "error",
 				"noUselessElse": "error"
+			},
+			"a11y": {
+				"noLabelWithoutControl": "off",
+				"noStaticElementInteractions": "off",
+				"useKeyWithClickEvents": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "warn"
 			}
 		}
 	},

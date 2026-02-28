@@ -92,7 +92,7 @@
 
 	const start = new Date();
 	function sendPageDuration(): void {
-		const duration = new Date().getTime() - start.getTime();
+		const duration = Date.now() - start.getTime();
 		enqueue("page_duration", { duration });
 	}
 

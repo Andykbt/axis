@@ -1,4 +1,4 @@
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BoxIcon } from "lucide-react";
 import { AddProjectDialog } from "@/components/dialogs/add-project";
@@ -19,7 +19,7 @@ import {
 	EmptyTitle,
 } from "@/components/ui/empty";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getProjects, projectsQuery } from "@/functions/get-projects";
+import { projectsQuery } from "@/functions/get-projects";
 
 export const Route = createFileRoute("/dashboard/projects")({
 	loader: async ({ context }) => {

@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-start/server";
 import { z } from "zod";
 
-const ingestSchema = z.object({
+const _ingestSchema = z.object({
 	writeKey: z.string().min(1),
 	events: z.array(
 		z.object({

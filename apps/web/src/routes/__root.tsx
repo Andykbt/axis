@@ -1,4 +1,3 @@
-import { env } from "@axis/env/web";
 import type { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {

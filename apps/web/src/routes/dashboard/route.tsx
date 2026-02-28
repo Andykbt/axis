@@ -1,11 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { NotFoundComponent } from "src/components/not-found";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Header } from "@/components/header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { getUser } from "@/functions/get-user";
-import { orpc } from "@/utils/orpc";
 
 export const Route = createFileRoute("/dashboard")({
 	component: RouteComponent,
@@ -24,10 +22,6 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function RouteComponent() {
-	const { session } = Route.useRouteContext();
-
-	const privateData = useQuery(orpc.privateData.queryOptions());
-
 	return (
 		<SidebarProvider>
 			<AppSidebar />
