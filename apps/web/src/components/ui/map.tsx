@@ -261,16 +261,7 @@ const MapView = forwardRef<MapRef, MapProps>(function MapView(
 			setIsStyleLoaded(false);
 			setMapInstance(null);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		clearStyleTimeout,
-		mapStyles.dark,
-		mapStyles.light,
-		projection,
-		props,
-		resolvedTheme,
-		viewport,
-	]);
+	}, [clearStyleTimeout, viewport, projection, mapStyles, resolvedTheme]);
 
 	// Sync controlled viewport to map
 	useEffect(() => {
@@ -445,9 +436,7 @@ function MapMarker({
 		markerInstance.on("dragend", handleDragEnd);
 
 		return markerInstance;
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [draggable, latitude, longitude, markerOptions]);
+	}, [longitude, latitude, draggable]);
 
 	useEffect(() => {
 		if (!map) return;
@@ -457,9 +446,7 @@ function MapMarker({
 		return () => {
 			marker.remove();
 		};
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map, marker.addTo, marker.remove]);
+	}, [map, marker]);
 
 	if (
 		marker.getLngLat().lng !== longitude ||
@@ -550,11 +537,12 @@ function MarkerPopup({
 			.setDOMContent(container);
 
 		return popupInstance;
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [container, popupOptions]);
 
 	useEffect(() => {
-		if (!map) return;
+		if (!map) {
+			return;
+		}
 
 		popup.setDOMContent(container);
 		marker.setPopup(popup);
@@ -562,8 +550,7 @@ function MarkerPopup({
 		return () => {
 			marker.setPopup(null);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [map, container, marker.setPopup, popup]);
+	}, [map, container, popup, marker]);
 
 	if (popup.isOpen()) {
 		const prev = prevPopupOptions.current;
@@ -629,8 +616,7 @@ function MarkerTooltip({
 		}).setMaxWidth("none");
 
 		return tooltipInstance;
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [popupOptions]);
+	}, []);
 
 	useEffect(() => {
 		if (!map) return;
@@ -650,16 +636,7 @@ function MarkerTooltip({
 			marker.getElement()?.removeEventListener("mouseleave", handleMouseLeave);
 			tooltip.remove();
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		map,
-		container,
-		marker.getElement,
-		marker.getLngLat,
-		tooltip.remove,
-		tooltip.setDOMContent,
-		tooltip.setLngLat,
-	]);
+	}, [map]);
 
 	if (tooltip.isOpen()) {
 		const prev = prevTooltipOptions.current;
@@ -746,7 +723,7 @@ const positionClasses = {
 
 function ControlGroup({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="flex flex-col overflow-hidden border border-border bg-background shadow-sm [&>button:not(:last-child)]:border-border [&>button:not(:last-child)]:border-b">
+		<div className="flex flex-col overflow-hidden rounded-md border border-border bg-background shadow-sm [&>button:not(:last-child)]:border-border [&>button:not(:last-child)]:border-b">
 			{children}
 		</div>
 	);
@@ -915,8 +892,8 @@ function CompassButton({ onClick }: { onClick: () => void }) {
 	return (
 		<ControlButton onClick={onClick} label="Reset bearing to north">
 			<svg
-				ref={compassRef}
 				aria-label="Reset bearing to north"
+				ref={compassRef}
 				viewBox="0 0 24 24"
 				className="size-5 transition-transform duration-200"
 				style={{ transformStyle: "preserve-3d" }}
@@ -970,8 +947,7 @@ function MapPopup({
 			.setLngLat([longitude, latitude]);
 
 		return popupInstance;
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [latitude, longitude, popupOptions]);
+	}, []);
 
 	useEffect(() => {
 		if (!map) return;
@@ -989,17 +965,7 @@ function MapPopup({
 				popup.remove();
 			}
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		map,
-		container,
-		popup.addTo,
-		popup.isOpen,
-		popup.off,
-		popup.on,
-		popup.remove,
-		popup.setDOMContent,
-	]);
+	}, [map]);
 
 	if (popup.isOpen()) {
 		const prev = popupOptionsRef.current;
@@ -1123,8 +1089,7 @@ function MapRoute({
 				// ignore
 			}
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isLoaded, map, color, dashArray, layerId, opacity, sourceId, width]);
+	}, [isLoaded, map]);
 
 	// When coordinates change, update the source data
 	useEffect(() => {
@@ -1328,21 +1293,7 @@ function MapClusterLayer<
 				// ignore
 			}
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [
-		isLoaded,
-		map,
-		sourceId,
-		clusterColors[0],
-		clusterCountLayerId,
-		clusterLayerId,
-		clusterMaxZoom,
-		clusterRadius,
-		clusterThresholds[0],
-		data,
-		pointColor,
-		unclusteredLayerId,
-	]);
+	}, [isLoaded, map, sourceId]);
 
 	// Update source data when data prop changes (only for non-URL data)
 	useEffect(() => {
@@ -1506,7 +1457,7 @@ function MapClusterLayer<
 }
 
 export {
-	MapView as Map,
+	MapView,
 	useMap,
 	MapMarker,
 	MarkerContent,

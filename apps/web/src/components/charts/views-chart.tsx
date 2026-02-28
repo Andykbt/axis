@@ -5,6 +5,7 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
+import { Card } from "../ui/card";
 
 const chartData = [
 	{ month: "January", desktop: 186 },
@@ -24,35 +25,37 @@ const chartConfig = {
 
 export function ProjectViewsChart() {
 	return (
-		<ChartContainer config={chartConfig}>
-			<LineChart
-				accessibilityLayer
-				data={chartData}
-				margin={{
-					left: 12,
-					right: 12,
-				}}
-			>
-				<CartesianGrid vertical={false} />
-				<XAxis
-					dataKey="month"
-					tickLine={false}
-					axisLine={false}
-					tickMargin={8}
-					tickFormatter={(value) => value.slice(0, 3)}
-				/>
-				<ChartTooltip
-					cursor={false}
-					content={<ChartTooltipContent hideLabel />}
-				/>
-				<Line
-					dataKey="desktop"
-					type="linear"
-					stroke="var(--color-desktop)"
-					dot={false}
-					strokeDasharray="4 4"
-				/>
-			</LineChart>
-		</ChartContainer>
+		<Card variant={"border"}>
+			<ChartContainer config={chartConfig}>
+				<LineChart
+					accessibilityLayer
+					data={chartData}
+					margin={{
+						left: 12,
+						right: 12,
+					}}
+				>
+					<CartesianGrid vertical={false} />
+					<XAxis
+						dataKey="month"
+						tickLine={false}
+						axisLine={false}
+						tickMargin={8}
+						tickFormatter={(value) => value.slice(0, 3)}
+					/>
+					<ChartTooltip
+						cursor={false}
+						content={<ChartTooltipContent hideLabel />}
+					/>
+					<Line
+						dataKey="desktop"
+						type="linear"
+						stroke="var(--color-desktop)"
+						dot={false}
+						strokeDasharray="4 4"
+					/>
+				</LineChart>
+			</ChartContainer>
+		</Card>
 	);
 }
