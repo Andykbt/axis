@@ -1,12 +1,8 @@
-import {
-	Link,
-	redirect,
-	useParams,
-	useRouterState,
-} from "@tanstack/react-router";
+import { Link, useParams } from "@tanstack/react-router";
 import {
 	BoxIcon,
 	LucideArrowLeft,
+	LucideBarChart,
 	LucideLayoutDashboard,
 	LucideList,
 } from "lucide-react";
@@ -57,6 +53,30 @@ function DashboardSidebar() {
 		</SidebarMenuItem>
 	);
 }
+
+const PROJECT_SIDEBAR_ITEMS = [
+	{
+		label: "Back to projects",
+		icon: LucideArrowLeft,
+		to: "/dashboard/projects",
+	},
+	{
+		label: "Overview",
+		icon: LucideLayoutDashboard,
+		to: "/dashboard/$projectId",
+	},
+	{
+		label: "Events",
+		icon: LucideList,
+		to: "/dashboard/$projectId/events",
+	},
+	{
+		label: "Performance",
+		icon: LucideBarChart,
+		to: "/dashboard/$projectId/performance",
+	},
+];
+
 function ProjectSidebar() {
 	const params = useParams({ strict: false });
 
@@ -64,30 +84,17 @@ function ProjectSidebar() {
 
 	return (
 		<SidebarMenuItem>
-			<SidebarMenuButton
-				render={
-					<Link to="/dashboard/projects">
-						<LucideArrowLeft />
-						Back to projects
-					</Link>
-				}
-			/>
-			<SidebarMenuButton
-				render={
-					<Link to="/dashboard/$projectId" params={{ projectId }}>
-						<LucideLayoutDashboard />
-						Overview
-					</Link>
-				}
-			/>
-			<SidebarMenuButton
-				render={
-					<Link to="/dashboard/$projectId/events" params={{ projectId }}>
-						<LucideList />
-						Events
-					</Link>
-				}
-			/>
+			{PROJECT_SIDEBAR_ITEMS.map((item) => (
+				<SidebarMenuButton
+					key={item.label}
+					render={
+						<Link to={item.to} params={{ projectId }}>
+							<item.icon />
+							{item.label}
+						</Link>
+					}
+				/>
+			))}
 		</SidebarMenuItem>
 	);
 }

@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardProjectsRouteImport } from './routes/dashboard/projects'
 import { Route as ApiIngestRouteImport } from './routes/api/ingest'
 import { Route as DashboardProjectIdIndexRouteImport } from './routes/dashboard/$projectId/index'
+import { Route as DashboardProjectIdPerformanceRouteImport } from './routes/dashboard/$projectId/performance'
 import { Route as DashboardProjectIdEventsRouteImport } from './routes/dashboard/$projectId/events'
 import { Route as ApiRpcSplatRouteImport } from './routes/api/rpc/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -49,6 +50,12 @@ const DashboardProjectIdIndexRoute = DashboardProjectIdIndexRouteImport.update({
   path: '/$projectId/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const DashboardProjectIdPerformanceRoute =
+  DashboardProjectIdPerformanceRouteImport.update({
+    id: '/$projectId/performance',
+    path: '/$projectId/performance',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const DashboardProjectIdEventsRoute =
   DashboardProjectIdEventsRouteImport.update({
     id: '/$projectId/events',
@@ -75,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
+  '/dashboard/$projectId/performance': typeof DashboardProjectIdPerformanceRoute
   '/dashboard/$projectId/': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -86,6 +94,7 @@ export interface FileRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
+  '/dashboard/$projectId/performance': typeof DashboardProjectIdPerformanceRoute
   '/dashboard/$projectId': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRoutesById {
@@ -98,6 +107,7 @@ export interface FileRoutesById {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
   '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
+  '/dashboard/$projectId/performance': typeof DashboardProjectIdPerformanceRoute
   '/dashboard/$projectId/': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/rpc/$'
     | '/dashboard/$projectId/events'
+    | '/dashboard/$projectId/performance'
     | '/dashboard/$projectId/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -122,6 +133,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/rpc/$'
     | '/dashboard/$projectId/events'
+    | '/dashboard/$projectId/performance'
     | '/dashboard/$projectId'
   id:
     | '__root__'
@@ -133,6 +145,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/rpc/$'
     | '/dashboard/$projectId/events'
+    | '/dashboard/$projectId/performance'
     | '/dashboard/$projectId/'
   fileRoutesById: FileRoutesById
 }
@@ -189,6 +202,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProjectIdIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/dashboard/$projectId/performance': {
+      id: '/dashboard/$projectId/performance'
+      path: '/$projectId/performance'
+      fullPath: '/dashboard/$projectId/performance'
+      preLoaderRoute: typeof DashboardProjectIdPerformanceRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/dashboard/$projectId/events': {
       id: '/dashboard/$projectId/events'
       path: '/$projectId/events'
@@ -216,12 +236,14 @@ declare module '@tanstack/react-router' {
 interface DashboardRouteRouteChildren {
   DashboardProjectsRoute: typeof DashboardProjectsRoute
   DashboardProjectIdEventsRoute: typeof DashboardProjectIdEventsRoute
+  DashboardProjectIdPerformanceRoute: typeof DashboardProjectIdPerformanceRoute
   DashboardProjectIdIndexRoute: typeof DashboardProjectIdIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardProjectsRoute: DashboardProjectsRoute,
   DashboardProjectIdEventsRoute: DashboardProjectIdEventsRoute,
+  DashboardProjectIdPerformanceRoute: DashboardProjectIdPerformanceRoute,
   DashboardProjectIdIndexRoute: DashboardProjectIdIndexRoute,
 }
 
