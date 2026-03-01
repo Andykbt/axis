@@ -7,6 +7,26 @@
 
 html {
 	overscroll-behavior: none;
+	overscroll-behavior: none;
+	/* Scrollbar: track and thumb use design tokens */
+	scrollbar-width: thin;
+	scrollbar-color: var(--border) var(--muted);
+}
+
+/* WebKit (Chrome, Safari, Edge) scrollbar */
+html::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+html::-webkit-scrollbar-track {
+	background: var(--muted);
+}
+html::-webkit-scrollbar-thumb {
+	background: var(--border);
+	border-radius: var(--radius);
+}
+html::-webkit-scrollbar-thumb:hover {
+	background: var(--muted-foreground);
 }
 
 :root {

@@ -8,9 +8,10 @@ export const Route = createFileRoute("/api/ingest")({
 			// 	return new Response("OK", { status: 200 });
 			// },
 			POST: async ({ request }) => {
+				console.log("###### Ingesting ######");
 				const data = await request.json();
 
-				const _res = await ingest({ data });
+				const res = await ingest({ data });
 
 				// return new Response(JSON.stringify(res), { status: 200 });
 				return new Response("OK", { status: 200 });

@@ -4,7 +4,6 @@ import { user } from "./auth";
 export const projects = pgTable("project", {
 	id: uuid("id").primaryKey().defaultRandom().notNull(),
 	name: text("name").notNull(),
-	writeKey: uuid("write_key").defaultRandom().notNull().unique(),
 	userId: text("user_id")
 		.notNull()
 		.references(() => user.id, { onDelete: "cascade" }),

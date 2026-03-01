@@ -1,8 +1,9 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { NotFoundComponent } from "src/components/not-found";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Header } from "@/components/header";
+import { NotFoundComponent } from "@/components/not-found";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { getUser } from "@/functions/get-user";
 
 export const Route = createFileRoute("/dashboard")({
@@ -24,12 +25,14 @@ export const Route = createFileRoute("/dashboard")({
 function RouteComponent() {
 	return (
 		<SidebarProvider>
-			<AppSidebar />
+			<TooltipProvider>
+				<AppSidebar />
 
-			<SidebarInset>
-				<Header />
-				<Outlet />
-			</SidebarInset>
+				<SidebarInset className="overflow-hidden">
+					<Header />
+					<Outlet />
+				</SidebarInset>
+			</TooltipProvider>
 		</SidebarProvider>
 	);
 }

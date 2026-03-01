@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardProjectsRouteImport } from './routes/dashboard/projects'
 import { Route as ApiIngestRouteImport } from './routes/api/ingest'
 import { Route as DashboardProjectIdIndexRouteImport } from './routes/dashboard/$projectId/index'
+import { Route as DashboardProjectIdEventsRouteImport } from './routes/dashboard/$projectId/events'
 import { Route as ApiRpcSplatRouteImport } from './routes/api/rpc/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -48,6 +49,12 @@ const DashboardProjectIdIndexRoute = DashboardProjectIdIndexRouteImport.update({
   path: '/$projectId/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const DashboardProjectIdEventsRoute =
+  DashboardProjectIdEventsRouteImport.update({
+    id: '/$projectId/events',
+    path: '/$projectId/events',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 const ApiRpcSplatRoute = ApiRpcSplatRouteImport.update({
   id: '/api/rpc/$',
   path: '/api/rpc/$',
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/projects': typeof DashboardProjectsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
   '/dashboard/$projectId/': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +85,7 @@ export interface FileRoutesByTo {
   '/dashboard/projects': typeof DashboardProjectsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
   '/dashboard/$projectId': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRoutesById {
@@ -88,6 +97,7 @@ export interface FileRoutesById {
   '/dashboard/projects': typeof DashboardProjectsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/rpc/$': typeof ApiRpcSplatRoute
+  '/dashboard/$projectId/events': typeof DashboardProjectIdEventsRoute
   '/dashboard/$projectId/': typeof DashboardProjectIdIndexRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/dashboard/projects'
     | '/api/auth/$'
     | '/api/rpc/$'
+    | '/dashboard/$projectId/events'
     | '/dashboard/$projectId/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +121,7 @@ export interface FileRouteTypes {
     | '/dashboard/projects'
     | '/api/auth/$'
     | '/api/rpc/$'
+    | '/dashboard/$projectId/events'
     | '/dashboard/$projectId'
   id:
     | '__root__'
@@ -120,6 +132,7 @@ export interface FileRouteTypes {
     | '/dashboard/projects'
     | '/api/auth/$'
     | '/api/rpc/$'
+    | '/dashboard/$projectId/events'
     | '/dashboard/$projectId/'
   fileRoutesById: FileRoutesById
 }
@@ -176,6 +189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProjectIdIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/dashboard/$projectId/events': {
+      id: '/dashboard/$projectId/events'
+      path: '/$projectId/events'
+      fullPath: '/dashboard/$projectId/events'
+      preLoaderRoute: typeof DashboardProjectIdEventsRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/api/rpc/$': {
       id: '/api/rpc/$'
       path: '/api/rpc/$'
@@ -195,11 +215,13 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteRouteChildren {
   DashboardProjectsRoute: typeof DashboardProjectsRoute
+  DashboardProjectIdEventsRoute: typeof DashboardProjectIdEventsRoute
   DashboardProjectIdIndexRoute: typeof DashboardProjectIdIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardProjectsRoute: DashboardProjectsRoute,
+  DashboardProjectIdEventsRoute: DashboardProjectIdEventsRoute,
   DashboardProjectIdIndexRoute: DashboardProjectIdIndexRoute,
 }
 

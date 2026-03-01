@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 			{
 				src: "/sdk.global.js",
 				defer: true,
-				"data-write-key": "ca0af992-7c20-4c07-aff1-746b2df69e64",
+				"project-id": "55e11a43-b066-4a47-82a1-084516c81201",
 			},
 		],
 	}),

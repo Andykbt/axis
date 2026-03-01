@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader, PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { addProject, addProjectSchema } from "src/functions/add-project";
+import { addProject, addProjectSchema } from "@/functions/add-project";
 import { Button } from "../ui/button";
 import {
 	Dialog,

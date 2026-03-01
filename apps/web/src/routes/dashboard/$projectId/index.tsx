@@ -6,7 +6,7 @@ import { Grid } from "@/components/grid";
 import { NotFoundComponent } from "@/components/not-found";
 import { Page, PageHeader, PageTitle } from "@/components/page";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapControls, Map as ReactMap } from "@/components/ui/map";
+import { MapControls, MapView } from "@/components/ui/map";
 import {
 	Select,
 	SelectContent,
@@ -90,7 +90,7 @@ function RouteComponent() {
 			<ProjectViewsChart />
 
 			<Card className="h-96 p-0" variant={"border"}>
-				<ReactMap
+				<MapView
 					center={[-74.006, 40.7128]}
 					zoom={2}
 					minZoom={1}
@@ -98,7 +98,7 @@ function RouteComponent() {
 					projection={{ type: "globe" }}
 				>
 					<MapControls showFullscreen position="top-right" />
-				</ReactMap>
+				</MapView>
 			</Card>
 
 			<Grid cols={2}>

@@ -1,9 +1,9 @@
 (() => {
 	const script = document.currentScript as HTMLScriptElement | null;
-	const writeKey = script?.getAttribute("data-write-key");
+	const projectId = script?.getAttribute("project-id");
 	const dataApi = script?.getAttribute("data-api");
 
-	if (!writeKey) {
+	if (!projectId) {
 		// FIXME - THROW ERROR
 		return;
 	}
@@ -33,7 +33,7 @@
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				writeKey,
+				projectId,
 				events: batch.map((e) => ({
 					name: e.name,
 					properties: e.properties,

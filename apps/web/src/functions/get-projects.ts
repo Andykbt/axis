@@ -5,7 +5,7 @@ import { createServerFn } from "@tanstack/react-start";
 
 import { eq } from "drizzle-orm";
 
-import { authMiddleware } from "src/middleware/auth";
+import { authMiddleware } from "@/middleware/auth";
 
 export const getProjects = createServerFn({ method: "GET" })
 	.middleware([authMiddleware])
@@ -16,7 +16,11 @@ export const getProjects = createServerFn({ method: "GET" })
 		}
 
 		const rows = await db
-			.select()
+			.select({
+				id: projects.id,
+				name: projects.name,
+				createdAt: projects.createdAt,
+			})
 			.from(projects)
 			.where(eq(projects.userId, context.session.user.id));
 
