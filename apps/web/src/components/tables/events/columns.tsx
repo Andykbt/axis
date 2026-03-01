@@ -46,7 +46,7 @@ export const columns: ColumnDef<Event>[] = [
 		header: "Properties",
 		accessorKey: "properties",
 		cell: ({ row }) => {
-			return <pre>{row.original.properties.length ?? "-"}</pre>;
+			return <pre>{Object.keys(row.original.properties).length ?? "-"}</pre>;
 		},
 	},
 	{

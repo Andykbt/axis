@@ -17,6 +17,7 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { Event } from "@/functions/get-events";
 
 export function TableControls({ table }: { table: Table<Event> }) {
 	const inputRef = useRef<HTMLInputElement>(null);

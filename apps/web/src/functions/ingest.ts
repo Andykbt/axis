@@ -34,14 +34,14 @@ export const ingest = createServerFn({ method: "POST" })
 		const headers = getRequestHeaders();
 		const userAgent = getRequestHeader("user-agent");
 
-		console.log("###### Headers ######");
-		console.log(headers);
-		console.log("###### User Agent ######");
-		console.log(userAgent);
-		console.log("###### IP ######");
-		console.log(ip);
-		console.log("###### Request ######");
-		console.log(request.method);
+		// console.log("###### Headers ######");
+		// console.log(headers);
+		// console.log("###### User Agent ######");
+		// console.log(userAgent);
+		// console.log("###### IP ######");
+		// console.log(ip);
+		// console.log("###### Request ######");
+		// console.log(request.method);
 
 		const result = await db.insert(events).values(
 			data.events.map((event) => ({

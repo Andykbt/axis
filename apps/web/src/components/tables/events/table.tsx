@@ -37,9 +37,6 @@ export function EventsTable({ projectId }: { projectId: string }) {
 		getFilteredRowModel: getFilteredRowModel(),
 		rowCount: events.length,
 		initialState: {
-			columnPinning: {
-				left: ["timestamp"],
-			},
 			pagination: {
 				pageSize: 50,
 			},
@@ -61,14 +58,7 @@ export function EventsTable({ projectId }: { projectId: string }) {
 					<TableHeader>
 						<TableRow className="sticky top-0 bg-background">
 							{table.getLeafHeaders().map((header) => (
-								<TableHead
-									key={header.id}
-									className={
-										header.column.getIsPinned() && "sticky left-0 bg-background"
-									}
-								>
-									{header.id}
-								</TableHead>
+								<TableHead key={header.id}>{header.id}</TableHead>
 							))}
 						</TableRow>
 					</TableHeader>
@@ -79,19 +69,13 @@ export function EventsTable({ projectId }: { projectId: string }) {
 								<TableRow
 									onClick={() => {
 										// Toggle the expanded state if the row has properties
-										if (row.original.properties.length > 0) {
+										if (Object.keys(row.original.properties ?? {}).length > 0) {
 											row.toggleExpanded();
 										}
 									}}
 								>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell
-											key={cell.id}
-											className={
-												cell.column.getIsPinned() &&
-												"sticky left-0 bg-background"
-											}
-										>
+										<TableCell key={cell.id}>
 											{flexRender(
 												cell.column.columnDef.cell,
 												cell.getContext(),

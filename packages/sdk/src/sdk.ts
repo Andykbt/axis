@@ -1,3 +1,5 @@
+import { type Metric, onCLS, onINP, onLCP, onTTFB } from "web-vitals";
+
 (() => {
 	const script = document.currentScript as HTMLScriptElement | null;
 	const projectId = script?.getAttribute("project-id");
@@ -102,4 +104,29 @@
 		}
 	});
 	window.addEventListener("pagehide", () => sendPageDuration());
+
+	// In packages/sdk – after defining enqueue(), and only when projectId exists:
+
+	function sendWebVital({
+		name,
+		value,
+		rating,
+		delta,
+		id,
+		navigationType,
+	}: Metric) {
+		enqueue("web_vital", {
+			metric: name, // 'LCP' | 'CLS' | 'INP' | 'FID' | 'TTFB'
+			value: Math.round(name === "CLS" ? value * 1000 : value),
+			rating,
+			delta,
+			id,
+			navigationType,
+		});
+	}
+
+	onCLS(sendWebVital);
+	onLCP(sendWebVital);
+	onINP(sendWebVital);
+	onTTFB(sendWebVital); // optional
 })();
