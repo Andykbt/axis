@@ -58,7 +58,7 @@ export function TableControls({ table }: { table: Table<Event> }) {
 					/>
 
 					<TooltipContent>
-						Previous Page <Kbd>←</Kbd>
+						Previous Page <Kbd>K</Kbd>
 					</TooltipContent>
 				</Tooltip>
 
@@ -75,7 +75,7 @@ export function TableControls({ table }: { table: Table<Event> }) {
 					/>
 
 					<TooltipContent>
-						Next Page <Kbd>K</Kbd>
+						Next Page <Kbd>J</Kbd>
 					</TooltipContent>
 				</Tooltip>
 			</ButtonGroup>
